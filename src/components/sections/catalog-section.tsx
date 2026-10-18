@@ -2,6 +2,7 @@ import Image from "next/image";
 
 const products = [
   {
+    id: "ethiopia",
     name: "Эфиопия Иргачеффе",
     origin: "Эфиопия · Иргачеффе",
     image: "/products/ethiopia.jpg",
@@ -13,6 +14,7 @@ const products = [
     style: "ethiopia",
   },
   {
+    id: "colombia",
     name: "Колумбия Уила",
     origin: "Колумбия · Уила",
     image: "/products/colombia.jpg",
@@ -24,6 +26,7 @@ const products = [
     style: "colombia",
   },
   {
+    id: "brazil",
     name: "Бразилия Серрадо",
     origin: "Бразилия · Серрадо",
     image: "/products/brazil.jpg",
@@ -35,6 +38,7 @@ const products = [
     style: "brazil",
   },
   {
+    id: "drip",
     name: "Дрип-пакеты, ассорти",
     origin: "Любимый кофе без кофемашины",
     image: "/products/drip-packs.jpg",
@@ -46,6 +50,7 @@ const products = [
     style: "drip",
   },
   {
+    id: "subscription",
     name: "Подписка на кофе",
     origin: "Хит · пусть кофе не заканчивается",
     image: "/products/subscription.jpg",
@@ -126,13 +131,13 @@ export function CatalogSection() {
                     </span>
                     <span className="product-weight">{product.weight}</span>
                   </div>
-                  <button
+                  <a
                     aria-label={`Хочу этот — ${product.name}`}
                     className="product-action"
-                    type="button"
+                    href={`/?product=${product.id}#contacts`}
                   >
                     Хочу этот <span aria-hidden="true">↗</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </article>

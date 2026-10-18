@@ -1,8 +1,9 @@
 const navigation = [
+  { href: "#about", label: "Мастерская" },
   { href: "#catalog", label: "Кофе" },
   { href: "#subscription", label: "Подписка" },
   { href: "#delivery", label: "Доставка" },
-  { href: "#about", label: "Мастерская" },
+  { href: "#contacts", label: "Контакты" },
 ];
 
 export function SiteHeader() {

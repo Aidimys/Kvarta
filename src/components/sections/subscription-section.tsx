@@ -48,6 +48,9 @@ export function SubscriptionSection() {
             </li>
           ))}
         </ol>
+        <a className="subscription-cta" href="#contacts">
+          Оставить заявку <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
   );

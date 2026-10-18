@@ -15,3 +15,7 @@
 Пример промпта фикса:
 
 ![UI fix](screenshots/UI_fix_propt.png)
+
+Результат тестирования LightHouse
+
+![lighthouse test](screenshots/lighthouse.png)

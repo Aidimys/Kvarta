@@ -2,9 +2,13 @@
 Первый промпт:
 ![initial prompt](screenshots/initial_prompt.png)
 
+Второй промпт
+
 ![second](screenshots/prompt2.png)
 
-Последний промпт макета содержал техническое требование формы:
+и так далее.
+
+Последний промпт макета помимо информации о секциях, так же содержал техническое требование формы:
 
 ![final prompt](screenshots/final_block.png)
 

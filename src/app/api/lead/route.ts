@@ -149,7 +149,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    const result = saveLead(lead, clientIp);
+    const result = await saveLead(lead, clientIp);
 
     if (!result.saved) {
       return Response.json(

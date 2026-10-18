@@ -283,7 +283,7 @@ a:focus-visible {
 
 .about-section {
   background: var(--cream);
-  padding: clamp(76px, 10vw, 144px) clamp(26px, 8vw, 128px);
+  padding: clamp(76px, 10vw, 120px) clamp(26px, 8vw, 128px);
   scroll-margin-top: 92px;
 }
 
@@ -382,6 +382,292 @@ a:focus-visible {
   margin: 0;
 }
 
+.catalog-section {
+  background: #eae5d9;
+  padding: clamp(76px, 9vw, 128px) clamp(26px, 7vw, 112px);
+  scroll-margin-top: 92px;
+}
+
+.catalog-inner {
+  margin: 0 auto;
+  max-width: 1376px;
+}
+
+.catalog-heading {
+  align-items: end;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin: 0 0 38px;
+}
+
+.catalog-eyebrow {
+  color: #6d7668;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin: 0 0 17px;
+  text-transform: uppercase;
+}
+
+.catalog-heading h2 {
+  color: var(--green-dark);
+  font-size: clamp(38px, 4.8vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.02;
+  margin: 0;
+}
+
+.catalog-intro {
+  color: #69746a;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 3px;
+  max-width: 330px;
+}
+
+.product-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-card {
+  background: #f6f3eb;
+  border: 1px solid rgb(71 76 57 / 10%);
+  color: var(--green-dark);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  scroll-margin-top: 110px;
+}
+
+.product-art {
+  flex: 0 0 190px;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-photo {
+  object-fit: cover;
+  transition: transform 320ms ease;
+  z-index: -2;
+}
+
+.product-card:hover .product-photo {
+  transform: scale(1.035);
+}
+
+.product-art::after {
+  background: linear-gradient(
+    180deg,
+    rgb(15 27 22 / 52%) 0%,
+    transparent 44%,
+    rgb(15 27 22 / 50%) 100%
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.product-origin,
+.product-art-caption {
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 35%);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.product-origin {
+  left: 18px;
+  top: 17px;
+}
+
+.product-art-caption {
+  bottom: 16px;
+  right: 18px;
+}
+
+.product-card-subscription {
+  background: #164a3c;
+  border-color: #164a3c;
+  color: #f4f2eb;
+}
+
+.product-card-subscription .product-art::after {
+  background: linear-gradient(
+    180deg,
+    rgb(12 35 27 / 60%) 0%,
+    transparent 48%,
+    rgb(12 35 27 / 58%) 100%
+  );
+}
+
+.product-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px 22px 18px;
+}
+
+.product-title-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  min-height: 48px;
+}
+
+.product-title-row h3 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.product-hit {
+  background: var(--accent);
+  color: var(--green-dark);
+  flex: 0 0 auto;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 8px;
+  text-transform: uppercase;
+}
+
+.product-flavors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 13px 0 0;
+  padding: 0;
+}
+
+.product-flavors li {
+  border: 1px solid #d8d0c0;
+  color: #59675c;
+  font-size: 10px;
+  line-height: 1.3;
+  padding: 6px 8px;
+}
+
+.product-card-subscription .product-flavors li {
+  border-color: #527366;
+  color: #e4e7dd;
+}
+
+.product-description {
+  color: #677267;
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 12px 0 0;
+}
+
+.product-card-subscription .product-description {
+  color: #d0d8d0;
+}
+
+.product-note {
+  color: #e5c98f;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
+.product-purchase {
+  align-items: end;
+  border-top: 1px solid #ded8ca;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.product-card-subscription .product-purchase {
+  border-color: #527366;
+}
+
+.product-price {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  min-width: 0;
+}
+
+.price-amount {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.price-unit {
+  color: #68756b;
+  font-size: 11px;
+}
+
+.product-card-subscription .price-unit {
+  color: #d0d8d0;
+}
+
+.product-weight {
+  color: #778177;
+  flex-basis: 100%;
+  font-size: 10px;
+}
+
+.product-card-subscription .product-weight {
+  color: #d0d8d0;
+}
+
+.product-action {
+  align-items: center;
+  background: transparent;
+  border: 1px solid #b6c0b4;
+  color: var(--green);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 12px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 12px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.product-action:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--cream);
+}
+
+.product-card-subscription .product-action {
+  border-color: #91a497;
+  color: var(--cream);
+}
+
+.product-card-subscription .product-action:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--green-dark);
+}
+
 @media (max-width: 1080px) {
   .header-inner {
     gap: 22px;
@@ -407,6 +693,14 @@ a:focus-visible {
 
   .about-section {
     padding-inline: 38px;
+  }
+
+  .catalog-section {
+    padding-inline: 38px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -495,6 +789,57 @@ a:focus-visible {
   .about-section {
     padding: 72px 26px 78px;
     scroll-margin-top: 90px;
+  }
+
+  .catalog-section {
+    padding: 72px 22px 78px;
+    scroll-margin-top: 90px;
+  }
+
+  .catalog-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+    margin-bottom: 27px;
+  }
+
+  .catalog-eyebrow {
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+
+  .catalog-heading h2 {
+    font-size: clamp(38px, 9vw, 50px);
+  }
+
+  .catalog-intro {
+    font-size: 13px;
+    max-width: 390px;
+  }
+
+  .product-grid {
+    gap: 13px;
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    scroll-margin-top: 105px;
+  }
+
+  .product-art {
+    flex-basis: 180px;
+  }
+
+  .product-content {
+    padding: 19px 18px 17px;
+  }
+
+  .product-title-row {
+    min-height: 0;
+  }
+
+  .product-purchase {
+    margin-top: 22px;
   }
 
   .about-intro {

@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Кварта — свежая обжарка кофе
 
-## Getting Started
+## Запуск
 
-First, run the development server:
+Требуется Node.js 22.13.0 или новее. Установите зависимости и запустите сайт:
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Заявки
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Форма отправляет заявки в `POST /api/lead`. Сервер проверяет белорусский
+мобильный номер и сохраняет заявку вместе с десятиминутным ограничением на
+повторную отправку с того же IP в SQLite.
 
-## Learn More
+По умолчанию база создаётся в `data/leads.sqlite`. Для другого расположения
+задайте переменную окружения `LEADS_DB_PATH`. Развёртывание требует доступного
+для записи постоянного диска: в serverless-среде локальная файловая система
+может быть временной, поэтому `LEADS_DB_PATH` следует направить на постоянный
+том или заменить SQLite на управляемое хранилище.
 
-To learn more about Next.js, take a look at the following resources:
+## Просмотр заявок
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+На компьютере или сервере, где находится база, выполните:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run leads
+```
 
-## Deploy on Vercel
+Команда выводит последние 100 заявок в консоль в режиме только для чтения.
+По умолчанию используется `data/leads.sqlite` относительно текущего каталога.
+Если приложению задан `LEADS_DB_PATH`, при просмотре укажите тот же путь. В
+PowerShell:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```powershell
+$env:LEADS_DB_PATH = "..."
+npm run leads
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Как работал над проектом
+
+Cформулировал содержание лендинга и требования к блокам: рассказал о
+мастерской, ассортименте, ценах, доставке и форме заказа, а также принимал
+решения по поведению каталога и формы. ИИ помог собрать эти требования в
+работающий сайт: создал секции и адаптивные стили, связал товарные карточки с
+формой, добавил серверную проверку заявок и SQLite-хранилище, а затем обновил
+навигацию для мобильных экранов. Изменения проверялись линтером, production-сборкой
+и выборочными сценариями в браузере.
+
+Скриншоты промптов содержаться в папке documentation/screenshots
+
+В ходе работы ИИ допускал ошибки в понимании деталей.
+Например,
+
+- в первом варианте логотипа появилась буква R вместо «К»;
+- Позже при выборе подписки форма показывала лишнее сообщение «Вы выбрали подписку», хотя достаточно отметить сам пункт «Подписка». Это тоже обнаружил при проверке сценария и убрал.
+- На узком экране обычная навигация не помещалась целиком, поэтому её заменил боковым меню с
+  бургер-кнопкой и проверил отсутствие горизонтальной прокрутки.
+
+И другие визуально лишние элементы и баги в логике работы формы.
+
+Что можно улучшить дальше:
+
+1. Сейчас просмотр лидов доступен через команду на машине с файлом базы; для постоянной работы стоит добавить авторизованный интерфейс управления заявками и убедиться, что среда
+   развёртывания предоставляет постоянное хранилище.
+2. Маску номера и защиту формы также полезно покрыть отдельными автоматизированными тестами для разных вводимых форматов.
+3. Изменить способ хранения информации о тоарах недели, чтобы владелец мог сам изменять эти данные без изменения кода.

@@ -49,7 +49,7 @@ export function SubscriptionSection() {
           ))}
         </ol>
         <a className="subscription-cta" href="#contacts">
-          Оставить заявку <span aria-hidden="true">↗</span>
+          Оставить заявку
         </a>
       </div>
     </section>

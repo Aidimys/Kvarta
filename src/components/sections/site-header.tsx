@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const navigation = [
   { href: "#about", label: "Мастерская" },
   { href: "#catalog", label: "Кофе" },
@@ -7,6 +11,29 @@ const navigation = [
 ];
 
 export function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -44,7 +71,69 @@ export function SiteHeader() {
         <a className="header-cta" href="#catalog">
           Выбрать кофе
         </a>
+
+        <button
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+          aria-controls="mobile-navigation"
+          className="menu-toggle"
+          onClick={() => setMenuOpen((open) => !open)}
+          type="button"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      <button
+        aria-label="Закрыть меню"
+        className={`mobile-menu-backdrop${menuOpen ? " is-open" : ""}`}
+        onClick={() => setMenuOpen(false)}
+        tabIndex={menuOpen ? 0 : -1}
+        type="button"
+      />
+      <aside
+        aria-hidden={!menuOpen}
+        aria-label="Мобильная навигация"
+        className={`mobile-menu${menuOpen ? " is-open" : ""}`}
+        id="mobile-navigation"
+      >
+        <div className="mobile-menu-heading">
+          <span className="brand-name">КВАРТА</span>
+          <button
+            aria-label="Закрыть меню"
+            className="mobile-menu-close"
+            onClick={() => setMenuOpen(false)}
+            tabIndex={menuOpen ? 0 : -1}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <nav aria-label="Основная навигация">
+          {navigation.map((item) => (
+            <a
+              className="mobile-nav-link"
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+              tabIndex={menuOpen ? 0 : -1}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            className="mobile-menu-cta"
+            href="#catalog"
+            onClick={() => setMenuOpen(false)}
+            tabIndex={menuOpen ? 0 : -1}
+          >
+            Выбрать кофе
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </aside>
     </header>
   );
 }

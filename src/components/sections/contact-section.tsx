@@ -48,7 +48,7 @@ export function ContactSection() {
   const phoneRef = useRef<HTMLInputElement>(null);
   const submitLock = useRef(false);
   const pendingPhoneCaret = useRef<number | null>(null);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+375 (");
   const [phoneTouched, setPhoneTouched] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
@@ -79,6 +79,17 @@ export function ContactSection() {
     window.history.replaceState(null, "", url);
   }
 
+  function handleInterestChange(interest: LeadInterest) {
+    const productInterest =
+      selectedProduct === "subscription" ? "subscription" : "order";
+
+    if (selectedProduct && interest !== productInterest) {
+      clearSelectedProduct();
+    }
+
+    setInterestOverride(interest);
+  }
+
   useLayoutEffect(() => {
     const caretPosition = pendingPhoneCaret.current;
     const input = phoneRef.current;
@@ -104,7 +115,7 @@ export function ContactSection() {
       : hasTrunkPrefix
         ? 2
         : 0;
-    const nextPhone = formatBelarusPhone(value);
+    const nextPhone = formatBelarusPhone(value) || "+375 (";
     const phoneDigits = getPhoneDigits(value);
 
     pendingPhoneCaret.current = phoneDigits.length
@@ -115,7 +126,7 @@ export function ContactSection() {
             digitsBeforeCaret - strippedPrefixLength + 3,
           ),
         )
-      : 0;
+      : "+375 (".length;
 
     setPhone(nextPhone);
     setPhoneTouched(true);
@@ -179,7 +190,7 @@ export function ContactSection() {
           "Заявка отправлена. Мы свяжемся с вами, чтобы уточнить детали.",
       });
       form.reset();
-      setPhone("");
+      setPhone("+375 (");
       setPhoneTouched(false);
       clearSelectedProduct();
     } catch {
@@ -248,8 +259,13 @@ export function ContactSection() {
                 name="phone"
                 onBlur={() => setPhoneTouched(true)}
                 onChange={handlePhoneChange}
+                onFocus={(event) => {
+                  if (!getPhoneDigits(phone).length) {
+                    event.currentTarget.setSelectionRange(6, 6);
+                  }
+                }}
                 pattern={belarusPhonePattern.source}
-                placeholder="+375 (__) ___-__-__"
+                placeholder="Введите код оператора и номер"
                 ref={phoneRef}
                 required
                 title="Введите белорусский мобильный номер, например +375 (29) 123-45-67"
@@ -257,7 +273,8 @@ export function ContactSection() {
                 value={phone}
               />
               <span className="field-hint" id="phone-hint">
-                Белорусский мобильный: +375 (29), (25), (33) или (44)
+                Код страны +375 уже указан. Введите код оператора и номер,
+                например 29 123-45-67.
               </span>
               {hasPhoneError && (
                 <span className="field-error" id="phone-error">
@@ -269,7 +286,7 @@ export function ContactSection() {
 
           <fieldset className="interest-field">
             <legend>Что вас интересует?</legend>
-            {selectedProduct && (
+            {selectedProduct && selectedProduct !== "subscription" && (
               <div className="selected-product">
                 <p>
                   Вы выбрали:{" "}
@@ -295,7 +312,7 @@ export function ContactSection() {
                   <input
                     checked={selectedInterest === interest.value}
                     name="interest"
-                    onChange={() => setInterestOverride(interest.value)}
+                    onChange={() => handleInterestChange(interest.value)}
                     required
                     type="radio"
                     value={interest.value}

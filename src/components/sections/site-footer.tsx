@@ -63,7 +63,7 @@ export function SiteFooter() {
               rel="noreferrer"
               target="_blank"
             >
-              {item.label} <span aria-hidden="true">↗</span>
+              {item.label}
             </a>
           ))}
         </nav>

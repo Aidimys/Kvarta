@@ -136,7 +136,7 @@ export function CatalogSection() {
                     className="product-action"
                     href={`/?product=${product.id}#contacts`}
                   >
-                    Хочу этот <span aria-hidden="true">↗</span>
+                    Хочу этот
                   </a>
                 </div>
               </div>

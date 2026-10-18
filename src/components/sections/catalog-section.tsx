@@ -46,7 +46,6 @@ const products = [
     style: "drip",
   },
   {
-    id: "subscription",
     name: "Подписка на кофе",
     origin: "Хит · пусть кофе не заканчивается",
     image: "/products/subscription.jpg",
@@ -85,7 +84,6 @@ export function CatalogSection() {
             <article
               aria-label={product.name}
               className={`product-card product-card-${product.style}`}
-              id={product.id}
               key={product.name}
             >
               <div className="product-art">
@@ -103,7 +101,7 @@ export function CatalogSection() {
               <div className="product-content">
                 <div className="product-title-row">
                   <h3>{product.name}</h3>
-                  {product.id === "subscription" && (
+                  {product.style === "subscription" && (
                     <span className="product-hit">Хит</span>
                   )}
                 </div>

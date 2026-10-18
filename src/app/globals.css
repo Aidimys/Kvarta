@@ -668,6 +668,179 @@ a:focus-visible {
   color: var(--green-dark);
 }
 
+.subscription-section {
+  background: var(--green-dark);
+  color: var(--cream);
+  padding: clamp(76px, 9vw, 126px) clamp(26px, 7vw, 112px);
+  scroll-margin-top: 92px;
+}
+
+.subscription-inner {
+  margin: 0 auto;
+  max-width: 1376px;
+}
+
+.subscription-heading {
+  max-width: 700px;
+}
+
+.subscription-eyebrow,
+.delivery-eyebrow {
+  color: #aebeb3;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.subscription-heading h2,
+.delivery-heading h2 {
+  font-size: clamp(40px, 5vw, 66px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin: 0;
+}
+
+.subscription-heading > p:last-child {
+  color: #c1cdc4;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 19px 0 0;
+  max-width: 470px;
+}
+
+.subscription-steps {
+  border-top: 1px solid #557064;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: clamp(48px, 6vw, 76px) 0 0;
+  padding: 0;
+}
+
+.subscription-step {
+  padding: 25px 30px 0 0;
+}
+
+.subscription-step + .subscription-step {
+  border-left: 1px solid #557064;
+  padding-left: 30px;
+}
+
+.step-number {
+  align-items: center;
+  border: 1px solid #81988a;
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  font-size: 11px;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.step-copy h3 {
+  color: var(--cream);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 22px 0 10px;
+}
+
+.step-copy p {
+  color: #c1cdc4;
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 330px;
+}
+
+.delivery-section {
+  background: #eae5d9;
+  padding: clamp(76px, 9vw, 126px) clamp(26px, 7vw, 112px);
+  scroll-margin-top: 92px;
+}
+
+.delivery-inner {
+  margin: 0 auto;
+  max-width: 1376px;
+}
+
+.delivery-heading h2 {
+  color: var(--green-dark);
+}
+
+.delivery-eyebrow {
+  color: #6d7668;
+}
+
+.delivery-options {
+  border-top: 1px solid #c8c9bc;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(38px, 5vw, 62px);
+}
+
+.delivery-option {
+  display: flex;
+  gap: 20px;
+  padding: 27px 34px 0 0;
+}
+
+.delivery-option + .delivery-option {
+  border-left: 1px solid #c8c9bc;
+  padding-left: 34px;
+}
+
+.delivery-icon {
+  align-items: center;
+  background: #dddccf;
+  border-radius: 50%;
+  display: inline-flex;
+  flex: 0 0 46px;
+  font-size: 20px;
+  height: 46px;
+  justify-content: center;
+}
+
+.delivery-copy h3 {
+  color: var(--green);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 3px 0 12px;
+}
+
+.delivery-copy > p {
+  color: #5c685e;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.delivery-copy > p + p {
+  margin-top: 7px;
+}
+
+.delivery-copy strong {
+  color: var(--green);
+}
+
+.workshop-hours {
+  border-top: 1px solid #c8c9bc;
+  margin-top: 18px !important;
+  padding-top: 15px;
+}
+
+.workshop-hours span {
+  color: #374e40;
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
 @media (max-width: 1080px) {
   .header-inner {
     gap: 22px;
@@ -701,6 +874,11 @@ a:focus-visible {
 
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .subscription-section,
+  .delivery-section {
+    padding-inline: 38px;
   }
 }
 
@@ -840,6 +1018,70 @@ a:focus-visible {
 
   .product-purchase {
     margin-top: 22px;
+  }
+
+  .subscription-section,
+  .delivery-section {
+    padding: 72px 26px 78px;
+    scroll-margin-top: 90px;
+  }
+
+  .subscription-heading h2,
+  .delivery-heading h2 {
+    font-size: clamp(40px, 10vw, 54px);
+  }
+
+  .subscription-heading > p:last-child {
+    font-size: 14px;
+  }
+
+  .subscription-steps {
+    grid-template-columns: 1fr;
+    margin-top: 38px;
+  }
+
+  .subscription-step {
+    display: grid;
+    gap: 0 17px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    padding: 21px 0;
+  }
+
+  .subscription-step + .subscription-step {
+    border-left: 0;
+    border-top: 1px solid #557064;
+    padding-left: 0;
+  }
+
+  .step-number {
+    grid-row: span 2;
+  }
+
+  .step-copy h3 {
+    margin: 1px 0 8px;
+  }
+
+  .step-copy p {
+    font-size: 12px;
+  }
+
+  .delivery-options {
+    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .delivery-option {
+    padding: 22px 0;
+  }
+
+  .delivery-option + .delivery-option {
+    border-left: 0;
+    border-top: 1px solid #c8c9bc;
+    padding-left: 0;
+  }
+
+  .delivery-copy h3 {
+    font-size: 17px;
   }
 
   .about-intro {

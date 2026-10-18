@@ -1,7 +1,9 @@
 import { AboutSection } from "@/components/sections/about-section";
 import { CatalogSection } from "@/components/sections/catalog-section";
+import { DeliverySection } from "@/components/sections/delivery-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { SiteHeader } from "@/components/sections/site-header";
+import { SubscriptionSection } from "@/components/sections/subscription-section";
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <CatalogSection />
+        <SubscriptionSection />
+        <DeliverySection />
       </main>
     </>
   );
